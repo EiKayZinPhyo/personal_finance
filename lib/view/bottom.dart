@@ -1,9 +1,12 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:personal_finance/controllers/bottom_controller.dart';
 import 'package:personal_finance/view/expense.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../controllers/incomebotto_controller.dart';
 import '../setting/settingpage.dart';
 import 'home.dart';
 import 'income.dart';
@@ -16,25 +19,31 @@ class BottomPage extends StatefulWidget {
 }
 
 class _BottomPageState extends State<BottomPage> {
-  PageController _pageController = PageController();
+  BottomController btnController = Get.put(BottomController());
+  // IncomeBottomController incomebtnController =
+  //     Get.put(IncomeBottomController());
+
+  PageController pageController = PageController();
+  // PageController incomepageController = PageController();
+
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    HomePage(),
-    IncomePage(),
-    ExpensePage(
-      addTransaction: (String title, double amount) {},
-    ),
-    SettingPage(),
-  ];
+
   void onTabTapped(int value) {
-    _pageController.jumpToPage(value);
+    pageController.jumpToPage(value);
   }
 
-  void _onPageChanged(int index) {
+  void onPageChanged(int index) {
     setState(() {
-      index = _currentIndex;
+      index = this._currentIndex;
     });
   }
+
+  final List<Widget> _children = [
+    HomePage(),
+    IncomePage(isTabIncome: true),
+    ExpensePage(isTab: true),
+    SettingPage(),
+  ];
 
   // final _auth = FirebaseAuth.instance;
 
@@ -60,11 +69,14 @@ class _BottomPageState extends State<BottomPage> {
 
   @override
   Widget build(BuildContext context) {
+    btnController.addPage(pageController);
+    // incomebtnController.addPage(incomepageController);
+
     return Scaffold(
       body: PageView(
-        controller: _pageController,
+        controller: pageController,
         children: _children,
-        onPageChanged: _onPageChanged,
+        onPageChanged: onPageChanged,
         physics: const NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(

@@ -1,8 +1,12 @@
+import 'dart:js_util';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:personal_finance/models/expenseList.dart';
 import 'package:personal_finance/models/newexpense.dart';
+
+import '../models/piechart.dart';
 
 class HomePage extends StatefulWidget {
   Function? callback;
@@ -14,7 +18,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   _HomePageState();
-  User? user;
 
   double totalIncome = 0.0;
   double expenseNo = 0.0;
@@ -86,8 +89,9 @@ class _HomePageState extends State<HomePage> {
     // addTransaction('', 1.0);
 
     fetchIncome();
-    fetchExpenseList();
     fetchExpense();
+    fetchExpenseList();
+
     super.initState();
   }
 
@@ -97,6 +101,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xffAE9B9B),
       body: Column(
         children: [
+          Container(
+            width: double.infinity,
+            height: 100,
+            child: PieChartPage(
+              totalExpense: expenseNo,
+              totalIncome: totalIncome,
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -107,8 +119,9 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
                   onPressed: () async {
-                    var result =
-                        await Navigator.pushNamed(context, '/incomepage');
+                    var result = await Navigator.pushNamed(
+                        context, '/incomepage',
+                        arguments: {"isTap": false});
 
                     if (result == "income") {
                       fetchIncome();
@@ -129,11 +142,13 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
                   onPressed: () async {
-                    final result =
-                        await Navigator.pushNamed(context, '/expensepage');
+                    final result = await Navigator.pushNamed(
+                        context, '/expensepage',
+                        arguments: {"isTap": false});
 
                     if (result == "expense") {
                       fetchExpenseList();
+                      fetchExpense();
                     } else {}
                   },
                   style: ElevatedButton.styleFrom(

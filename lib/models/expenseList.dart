@@ -24,45 +24,49 @@ class _ExpenseListState extends State<ExpenseList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 280,
       // color: Colors.white,
-      child: ListView.builder(
-        itemCount: widget.transactions.length,
-        shrinkWrap: true,
-        itemBuilder: ((context, index) {
-          return Column(
-            children: [
-              Container(
-                height: 100,
-                width: double.infinity,
-                padding: const EdgeInsets.all(10.0),
-                child: Card(
-                  color: Color(0xffD3C3AF),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.transactions[index].title.toString(),
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+      child: widget.transactions.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: widget.transactions.length,
+              shrinkWrap: true,
+              itemBuilder: ((context, index) {
+                return Column(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10.0),
+                      child: Card(
+                        color: Color(0xffD3C3AF),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.transactions[index].title.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 10.0, left: 10),
+                              child: Text(
+                                widget.transactions[index].amount.toString(),
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 15),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10),
-                        child: Text(
-                          widget.transactions[index].amount.toString(),
-                          style: TextStyle(color: Colors.red, fontSize: 15),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          );
-        }),
-      ),
+                    ),
+                  ],
+                );
+              }),
+            ),
     );
   }
 }

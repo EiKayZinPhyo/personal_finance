@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 import 'package:personal_finance/screen/login.dart';
 import 'package:personal_finance/screen/register.dart';
@@ -27,12 +28,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/registerpage',
       routes: {
         '/registerpage': ((context) => const RegisterPage()),
-        // '/': ((context) => const SplashPage()),
+        '/': ((context) => const SplashPage()),
         '/loginpage': ((context) => const LoginPage()),
         '/homepage': (context) => HomePage(
             // enumber: '',
@@ -40,9 +41,7 @@ class MyApp extends StatelessWidget {
             ),
         '/incomepage': (context) => IncomePage(),
         '/bottompage': (context) => const BottomPage(),
-        '/expensepage': (context) => ExpensePage(
-              addTransaction: (String title, double amount) {},
-            ),
+        '/expensepage': (context) => ExpensePage(),
         '/settingpage': (context) => SettingPage(),
         '/resetpage': (context) => ResetPage(),
       },

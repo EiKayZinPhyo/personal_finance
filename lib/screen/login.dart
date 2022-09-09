@@ -79,123 +79,119 @@ class _LoginPageState extends State<LoginPage> {
         ),
         elevation: 0,
       ),
-      body: showing
-          ? const Center(
-              child: CircularProgressIndicator(color: Colors.blueAccent),
-            )
-          : SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(top: 50, left: 20),
-                    child: const Text(
-                      'Welcome Back',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    width: double.infinity,
-                    child: TextField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          errorText: checking ? emailErrorText : null,
-                          hintText: "Enter your email",
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(color: Colors.black),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(color: Colors.black),
-                          ),
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            value = test;
-                          });
-                        }),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    width: double.infinity,
-                    child: TextField(
-                      obscureText: isVisible,
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        errorText: checking ? passwordErrorText : null,
-                        hintText: "Enter your password",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Colors.red),
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          icon: Icon(isVisible
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off),
-                        ),
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          value = test;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        loginData();
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 99, 73, 73)),
-                      child: showing
-                          ? CircularProgressIndicator()
-                          : const Text('Login',
-                              style: TextStyle(color: Colors.black)),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.popAndPushNamed(context, '/registerpage');
-                    },
-                    child: Container(
-                      child: const Text("Don't have an account? Register"),
-                    ),
-                  )
-                ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(top: 50, left: 20),
+              child: const Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 18),
               ),
             ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              width: double.infinity,
+              child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    errorText: checking ? emailErrorText : null,
+                    hintText: "Enter your email",
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: const BorderSide(color: Colors.black),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: const BorderSide(color: Colors.black),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      value = test;
+                    });
+                  }),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              width: double.infinity,
+              child: TextField(
+                obscureText: isVisible,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  errorText: checking ? passwordErrorText : null,
+                  hintText: "Enter your password",
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.black),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.black),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isVisible = !isVisible;
+                      });
+                    },
+                    icon: Icon(isVisible
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    value = test;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 50,
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () async {
+                  loginData();
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: const Color.fromARGB(255, 99, 73, 73)),
+                child: showing
+                    ? Center(child: CircularProgressIndicator())
+                    : const Text('Login',
+                        style: TextStyle(color: Colors.black)),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.popAndPushNamed(context, '/registerpage');
+              },
+              child: Container(
+                child: const Text("Don't have an account? Register"),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

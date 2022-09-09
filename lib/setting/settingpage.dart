@@ -13,6 +13,15 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color(0xffAE9B9B),
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/bottompage');
+            },
+            icon: Icon(Icons.arrow_back),
+          )),
       backgroundColor: Color(0xffAE9B9B),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
