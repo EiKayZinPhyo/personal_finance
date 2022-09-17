@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/registerpage',
+      initialRoute: '/',
       routes: {
         '/registerpage': ((context) => const RegisterPage()),
         '/': ((context) => const SplashPage()),

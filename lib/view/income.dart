@@ -5,7 +5,6 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:personal_finance/controllers/incomebotto_controller.dart';
 import 'package:personal_finance/view/home.dart';
 
 import '../controllers/bottom_controller.dart';

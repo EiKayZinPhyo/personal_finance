@@ -27,7 +27,10 @@ class _ExpenseListState extends State<ExpenseList> {
       height: 280,
       // color: Colors.white,
       child: widget.transactions.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(
+              color: Colors.white,
+            ))
           : ListView.builder(
               itemCount: widget.transactions.length,
               shrinkWrap: true,

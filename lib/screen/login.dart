@@ -148,8 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                     icon: Icon(isVisible
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off),
+                        ? Icons.visibility_off
+                        : Icons.visibility_outlined),
                   ),
                 ),
                 onChanged: (value) {

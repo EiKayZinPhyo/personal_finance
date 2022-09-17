@@ -6,7 +6,6 @@ import 'package:personal_finance/controllers/bottom_controller.dart';
 import 'package:personal_finance/view/expense.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../controllers/incomebotto_controller.dart';
 import '../setting/settingpage.dart';
 import 'home.dart';
 import 'income.dart';
@@ -44,28 +43,6 @@ class _BottomPageState extends State<BottomPage> {
     ExpensePage(isTab: true),
     SettingPage(),
   ];
-
-  // final _auth = FirebaseAuth.instance;
-
-  // void getCurrentUser() async {
-  //   try {
-  //     final user = _auth.currentUser;
-  //     if (user != null) {
-  //       loginUser = user;
-  //       Navigator.pushNamed(context, '/bottompage');
-  //     }
-  //     print(loginUser!.email);
-  //   } catch (e) {
-  //     // Navigator.pushNamed(context, '/registerpage');
-  //   }
-  // }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   getCurrentUser();
-  // }
 
   @override
   Widget build(BuildContext context) {
